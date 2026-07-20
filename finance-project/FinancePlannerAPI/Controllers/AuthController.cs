@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
         if (!result)
             return BadRequest("Email already registered.");
 
-        return Ok("User created successfully.");
+        return Ok();
     }
 
     [HttpPost("login")]

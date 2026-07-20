@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinancePlannerAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260715235231_InitialCreate")]
+    [Migration("20260717034206_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -119,9 +119,14 @@ namespace FinancePlannerAPI.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("InvestmentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Contributions");
                 });
@@ -222,6 +227,9 @@ namespace FinancePlannerAPI.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -312,7 +320,15 @@ namespace FinancePlannerAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FinancePlannerAPI.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Investment");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FinancePlannerAPI.Models.FinancialGoal", b =>

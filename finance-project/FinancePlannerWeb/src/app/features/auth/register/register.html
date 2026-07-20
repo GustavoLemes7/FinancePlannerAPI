@@ -1,0 +1,63 @@
+<div class="container">
+
+    <div class="left">
+
+        <div class="content">
+
+            <h1>Crie sua conta</h1>
+
+            <p>
+                Comece a organizar suas finanças em poucos minutos.
+            </p>
+
+            <ul>
+                <li>Controle suas contas</li>
+                <li>Acompanhe receitas e despesas</li>
+                <li>Defina metas financeiras</li>
+                <li>Visualize relatórios</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <form (ngSubmit)="register()">
+
+            <div class="register-card">
+
+                <h2>Cadastro</h2>
+
+                <input
+                    type="text"
+                    name="name"
+                    [(ngModel)]="name"
+                    placeholder="Nome">
+
+                <input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    placeholder="Email">
+
+                <input
+                    type="password"
+                    name="password"
+                    [(ngModel)]="password"
+                    placeholder="Senha">
+
+                <input
+                    type="password"
+                    placeholder="Confirmar senha">
+
+                <button type="submit">
+                    Criar conta
+                </button>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

@@ -135,3 +135,4 @@ C:\Users\ggust\Documents\Gerenciador Financeiro\finance-project\FinancePlannerAP
 C:\Users\ggust\Documents\Gerenciador Financeiro\finance-project\FinancePlannerAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\ggust\Documents\Gerenciador Financeiro\finance-project\FinancePlannerAPI\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\ggust\Documents\Gerenciador Financeiro\finance-project\FinancePlannerAPI\bin\Debug\net9.0\CsvHelper.dll
+C:\Users\ggust\Documents\Gerenciador Financeiro\finance-project\FinancePlannerAPI\obj\Debug\net9.0\FinancePlannerAPI.sourcelink.json

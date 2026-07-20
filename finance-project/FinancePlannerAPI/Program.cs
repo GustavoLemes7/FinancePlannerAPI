@@ -23,6 +23,10 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<ContributionService>();
+builder.Services.AddScoped<FinancialGoalService>();
+builder.Services.AddScoped<InvestmentService>();
+builder.Services.AddScoped<TransactionService>();
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -45,10 +49,24 @@ builder.Services
                         ))
             };
     });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Angular",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
+app.UseCors("Angular");
 
 app.UseAuthentication();
 

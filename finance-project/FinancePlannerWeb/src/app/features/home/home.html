@@ -1,0 +1,62 @@
+<div class="container">
+
+  <div class="left">
+
+    <div class="content">
+
+      <h1>Finance Planner</h1>
+
+      <p>
+        Gerencie suas finanças de forma simples, segura e organizada.
+      </p>
+
+      <ul>
+        <li>✔ Controle de contas</li>
+        <li>✔ Receitas e despesas</li>
+        <li>✔ Metas financeiras</li>
+        <li>✔ Dashboard completo</li>
+        <li>✔ Importação de extratos</li>
+      </ul>
+
+      <button routerLink="/register">
+        Criar Conta
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="right">
+
+    <div class="login-card">
+
+      <h2>Bem-vindo</h2>
+
+      <p>Entre para acessar sua conta.</p>
+      <form (ngSubmit)="login()">
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Email">
+
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Senha">
+
+        <button class="login-btn" type="submit">
+          Entrar
+        </button>
+
+      </form>
+
+      <a href="#">Esqueceu sua senha?</a>
+
+    </div>
+
+  </div>
+
+</div>

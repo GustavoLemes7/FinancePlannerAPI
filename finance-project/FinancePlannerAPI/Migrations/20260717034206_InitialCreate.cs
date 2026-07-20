@@ -153,6 +153,7 @@ namespace FinancePlannerAPI.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     Type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "longtext", nullable: false)
@@ -192,6 +193,7 @@ namespace FinancePlannerAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     InvestmentId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     ContributionDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -208,6 +210,12 @@ namespace FinancePlannerAPI.Migrations
                         principalTable: "Investments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Contributions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -220,6 +228,11 @@ namespace FinancePlannerAPI.Migrations
                 name: "IX_Contributions_InvestmentId",
                 table: "Contributions",
                 column: "InvestmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contributions_UserId",
+                table: "Contributions",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FinancialGoals_UserId",
