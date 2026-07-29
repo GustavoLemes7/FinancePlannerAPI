@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 export class Home {
 
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   email = '';
   password = '';
@@ -23,19 +24,24 @@ export class Home {
       password: this.password
     };
 
-    this.authService.login(request)
-      .subscribe({
-        next: () => {
+  this.authService.login(request)
+  .subscribe({
+    next: (response) => {
 
-          console.log('Usuário logado.');
+      localStorage.setItem(
+        'token',
+        response.token
+      );
 
-        },
-        error: (err) => {
+      this.router.navigate(['/dashboard']);
 
-          console.error(err);
+    },
+    error: (err) => {
 
-        }
-      });
+      console.error(err);
+
+    }
+  });
 
   }
 

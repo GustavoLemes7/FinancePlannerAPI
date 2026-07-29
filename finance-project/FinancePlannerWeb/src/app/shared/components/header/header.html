@@ -1,0 +1,32 @@
+<header class="header">
+
+    <h1>Dashboard</h1>
+
+
+    <div class="user-menu">
+
+        <button
+            class="profile-btn"
+            (click)="isMenuOpen = !isMenuOpen">
+
+            Gustavo Lemes 
+
+        </button>
+
+        @if (isMenuOpen) {
+            <div class="dropdown">
+
+                <a routerLink="/profile">
+                    Perfil
+                </a>
+
+                <button (click)="logout()">
+                    Sair
+                </button>
+
+            </div>
+        }
+
+    </div>
+
+</header>

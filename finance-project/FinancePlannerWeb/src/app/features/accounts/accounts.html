@@ -1,0 +1,61 @@
+<div class="page-header">
+
+    <h1>Contas</h1>
+
+    <button class="btn-primary">
+        + Nova Conta
+    </button>
+
+</div>
+
+<div class="accounts-grid">
+
+    @for(account of accounts; track account.publicId){
+
+        <div class="account-card">
+
+            <div class="account-header">
+
+                <div>
+
+                    <h3>{{ account.name }}</h3>
+
+                    <span>{{ account.type }}</span>
+
+                </div>
+
+                <div class="icon">
+
+                    🏦
+
+                </div>
+
+            </div>
+
+            <div class="balance">
+
+                <small>Saldo Atual</small>
+
+                <h2>
+                    {{ account.initialBalance | currency:'BRL':'symbol':'1.2-2' }}
+                </h2>
+
+            </div>
+
+            <div class="actions">
+
+                <button class="edit">
+                    Editar
+                </button>
+
+                <button class="delete">
+                    Excluir
+                </button>
+
+            </div>
+
+        </div>
+
+    }
+
+</div>

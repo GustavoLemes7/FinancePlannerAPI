@@ -35,15 +35,9 @@ public class AccountService
         return true;
     }
 
-      public async Task<Account?> GetByUserID(int userId)
+      public async Task<List<Account>> GetByUserID(int userId)
     {
-        var account = await _context.Accounts.FirstOrDefaultAsync(x => x.UserId == userId);
-
-        if (account == null)
-            return null;
-
-
-        return account;
+        return await _context.Accounts.Where(x => x.UserId == userId).ToListAsync();;
     }
 
     public async Task<Account?> GetByPublicId(int userId, Guid publicId)

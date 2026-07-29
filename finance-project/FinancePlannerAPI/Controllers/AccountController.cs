@@ -51,12 +51,12 @@ public class AccountController : ControllerBase
     {
         var userId = User.GetUserId();
 
-        var account = await _accountService.GetByUserID(userId);
+        var accounts = await _accountService.GetByUserID(userId);
 
-        if (account is null)
+        if (accounts is null)
             return NotFound();
 
-        return Ok(account);
+        return Ok(accounts);
     }
 
     [Authorize]
