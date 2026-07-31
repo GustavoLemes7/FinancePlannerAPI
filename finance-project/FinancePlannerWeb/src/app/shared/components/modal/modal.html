@@ -1,0 +1,36 @@
+<div class="modal-overlay" (click)="close()">
+
+    <div class="modal" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>{{ title }}</h2>
+
+                @if (subtitle) {
+                    <p>{{ subtitle }}</p>
+                }
+
+            </div>
+
+            <button
+                type="button"
+                class="close-button"
+                (click)="close()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <ng-content></ng-content>
+
+        </div>
+
+    </div>
+
+</div>

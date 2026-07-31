@@ -1,16 +1,28 @@
 <div class="page-header">
 
-    <h1>Contas</h1>
+    <div>
 
-    <button class="btn-primary">
+        <h1>Contas</h1>
+
+        <p>Gerencie suas contas financeiras</p>
+
+    </div>
+
+    <button
+        class="btn-primary"
+        type="button"
+        (click)="openCreateModal()">
+
         + Nova Conta
+
     </button>
 
 </div>
 
+
 <div class="accounts-grid">
 
-    @for(account of accounts; track account.publicId){
+    @for (account of accounts; track account.publicId) {
 
         <div class="account-card">
 
@@ -32,23 +44,33 @@
 
             </div>
 
+
             <div class="balance">
 
                 <small>Saldo Atual</small>
 
                 <h2>
-                    {{ account.initialBalance | currency:'BRL':'symbol':'1.2-2' }}
+                    {{ account.initialBalance | currency:'BRL' }}
                 </h2>
 
             </div>
 
+
             <div class="actions">
 
-                <button class="edit">
+                <button
+                    type="button"
+                    class="edit"
+                    (click)="openEditModal(account)">
+
                     Editar
+
                 </button>
 
-                <button class="delete">
+                <button
+                    type="button"
+                    class="delete"
+                    (click)="deleteAccount(account.publicId)">
                     Excluir
                 </button>
 
@@ -59,3 +81,103 @@
     }
 
 </div>
+
+
+@if (showCreateModal) {
+
+    <app-modal
+    [title]="isEditMode ? 'Editar Conta' : 'Nova Conta'"
+    [subtitle]="isEditMode
+        ? 'Edite os dados da sua conta financeira'
+        : 'Adicione uma nova conta financeira'">
+
+        <form
+            [formGroup]="accountForm"
+            (ngSubmit)="submitAccount()">
+
+            <!-- Nome -->
+            <div class="form-group">
+
+                <label for="name">
+                    Nome
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    formControlName="name">
+
+            </div>
+
+            <!-- Tipo -->
+            <div class="form-group">
+
+                <label for="type">
+                    Tipo
+                </label>
+
+                <select
+                    id="type"
+                    formControlName="type">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="Banco Digital">
+                        Banco Digital
+                    </option>
+
+                    <option value="Banco">
+                        Banco
+                    </option>
+
+                    <option value="Carteira">
+                        Carteira
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Saldo -->
+            <div class="form-group">
+
+                <label for="initialBalance">
+                    Saldo Inicial
+                </label>
+
+                <input
+                    id="initialBalance"
+                    type="number"
+                    formControlName="initialBalance">
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    (click)="closeCreateModal()">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                    [disabled]="loading">
+
+                    {{ isEditMode ? 'Salvar Alterações' : 'Criar Conta' }}
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </app-modal>
+
+}
