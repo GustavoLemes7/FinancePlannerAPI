@@ -2,7 +2,7 @@ public class CreateTransactionRequest
 {
     public Guid AccountPublicId { get; set; }
 
-    public Guid CategoryPublicId { get; set; }
+    public string Category { get; set; } = string.Empty;
 
     public decimal Amount { get; set; }
 

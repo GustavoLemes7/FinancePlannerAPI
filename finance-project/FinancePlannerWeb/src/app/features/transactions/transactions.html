@@ -1,0 +1,389 @@
+<div class="page-header">
+
+    <div>
+        <h1>Transações</h1>
+        <p>Controle suas receitas e despesas.</p>
+    </div>
+
+    <button
+        class="btn-primary"
+        type="button"
+        (click)="openCreateModal()">
+
+        + Nova Transação
+
+    </button>
+
+</div>
+
+
+<div class="filters">
+
+    <div class="filter-group">
+
+        <label for="type">Tipo</label>
+
+        <select id="type">
+
+            <option value="">Todos</option>
+            <option value="Income">Receitas</option>
+            <option value="Expense">Despesas</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <label for="category">Categoria</label>
+
+        <select id="category">
+
+            <option value="">Todas</option>
+            <option value="Food">Alimentação</option>
+            <option value="Transport">Transporte</option>
+            <option value="Salary">Salário</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <label for="date">Período</label>
+
+        <select id="date">
+
+            <option value="">Todos</option>
+            <option value="month">Este mês</option>
+            <option value="last-month">Mês passado</option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+<div class="transactions-card">
+
+    <div class="transactions-header">
+
+        <div>
+
+            <h2>Histórico</h2>
+
+            <span>
+                {{ transactions.length }} transações
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="transaction-list">
+
+        @for (transaction of transactions; track transaction.publicId) {
+
+            <div class="transaction-item">
+
+                <div class="transaction-info">
+
+                    <div
+                        class="transaction-icon"
+                        [class.income]="transaction.type === 'Income'"
+                        [class.expense]="transaction.type === 'Expense'">
+
+                        {{ transaction.type === 'Income' ? '+' : '-' }}
+
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            {{ transaction.description }}
+                        </h3>
+
+                        <span>
+                            {{ transaction.category }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="transaction-value"
+                    [class.income]="transaction.type === 'Income'"
+                    [class.expense]="transaction.type === 'Expense'">
+
+                    <strong>
+
+                        {{ transaction.type === 'Income' ? '+' : '-' }}
+
+                        R$ {{ transaction.amount | number:'1.2-2' }}
+
+                    </strong>
+
+                    <small>
+                        {{ transaction.transactionDate | date:'dd/MM/yyyy' }}
+                    </small>
+
+                </div>
+
+
+                <div class="transaction-actions">
+
+                    <button
+                        type="button"
+                        class="edit"
+                        (click)="openEditModal(transaction)">
+
+                        Editar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="delete"
+                        (click)="deleteTransaction(transaction.publicId)">
+
+                        Excluir
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        }
+
+
+        @if (transactions.length === 0) {
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    $
+                </div>
+
+                <h3>Nenhuma transação encontrada</h3>
+
+                <p>
+                    Comece adicionando sua primeira receita ou despesa.
+                </p>
+
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+@if (showCreateModal) {
+<app-modal
+    [title]="isEditMode ? 'Editar Transação' : 'Nova Transação'"
+    [subtitle]="isEditMode
+        ? 'Altere os dados da transação'
+        : 'Adicione uma nova receita ou despesa'">
+
+    <form
+        [formGroup]="transactionForm"
+        (ngSubmit)="saveTransaction()">
+
+
+        <div class="form-group">
+
+            <label for="account">
+                Conta
+            </label>
+
+            <select
+                id="account"
+                formControlName="accountPublicId">
+
+                <option value="">
+                    Selecione uma conta
+                </option>
+
+                @for (account of accounts; track account.publicId) {
+
+                    <option [value]="account.publicId">
+                        {{ account.name }}
+                    </option>
+
+                }
+
+            </select>
+
+            @if (
+                transactionForm.controls.accountPublicId.invalid &&
+                transactionForm.controls.accountPublicId.touched
+            ) {
+
+                <span class="field-error">
+                    Selecione uma conta.
+                </span>
+
+            }
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="type">
+                Tipo
+            </label>
+
+            <select
+                id="type"
+                formControlName="type">
+
+                <option value="">
+                    Selecione o tipo
+                </option>
+
+                <option value="Income">
+                    Receita
+                </option>
+
+                <option value="Expense">
+                    Despesa
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="category">
+                Categoria
+            </label>
+
+            <select
+                id="category"
+                formControlName="category">
+
+                <option value="">
+                    Selecione uma categoria
+                </option>
+
+                <option value="Food">
+                    Alimentação
+                </option>
+
+                <option value="Transport">
+                    Transporte
+                </option>
+
+                <option value="Salary">
+                    Salário
+                </option>
+
+                <option value="Housing">
+                    Moradia
+                </option>
+
+                <option value="Other">
+                    Outros
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="amount">
+                Valor
+            </label>
+
+            <input
+                id="amount"
+                type="number"
+                step="0.01"
+                formControlName="amount"
+                placeholder="0,00">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="description">
+                Descrição
+            </label>
+
+            <input
+                id="description"
+                type="text"
+                formControlName="description"
+                placeholder="Ex: Supermercado">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="transactionDate">
+                Data
+            </label>
+
+            <input
+                id="transactionDate"
+                type="date"
+                formControlName="transactionDate">
+
+        </div>
+
+
+        @if (formError) {
+
+            <div class="form-error">
+                {{ formError }}
+            </div>
+
+        }
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="btn-secondary"
+                (click)="closeModal()"
+                [disabled]="isSaving">
+
+                Cancelar
+
+            </button>
+
+
+            <button
+                type="submit"
+                class="btn-primary"
+                [disabled]="transactionForm.invalid || isSaving">
+
+                {{ isSaving ? 'Salvando...' : 'Salvar' }}
+
+            </button>
+
+        </div>
+
+    </form>
+
+</app-modal>
+}

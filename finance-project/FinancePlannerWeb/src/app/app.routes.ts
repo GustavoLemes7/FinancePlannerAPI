@@ -5,6 +5,7 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { authGuard } from './core/guards/auth-guard';
 import { Accounts } from './features/accounts/accounts';
 import { DashboardHome } from './features/dashboard/pages/dashboard-home/dashboard-home';
+import { Transactions } from './features/transactions/transactions';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,10 @@ export const routes: Routes = [
     {
       path: 'accounts',
       component: Accounts
+    },
+    {
+      path: 'transactions',
+      component: Transactions
     }
   ]
 }

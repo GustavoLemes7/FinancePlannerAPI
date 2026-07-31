@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-import { LoginResponse } from '../interfaces/auth/login-response';
-import { LoginRequest } from '../interfaces/auth/login-request';
+import { environment } from '../../../../environments/environment';
+import { LoginResponse } from '../../interfaces/auth/login-response';
+import { LoginRequest } from '../../interfaces/auth/login-request';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 

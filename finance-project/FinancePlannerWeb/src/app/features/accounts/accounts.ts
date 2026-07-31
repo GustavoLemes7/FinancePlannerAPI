@@ -8,7 +8,7 @@ import {
 
 import { Account } from '../../core/interfaces/account/account';
 import { CreateAccount } from '../../core/interfaces/account/create-account';
-import { AccountService } from '../../core/services/account.service';
+import { AccountService } from '../../core/services/account/account.service';
 import { Modal } from '../../shared/components/modal/modal';
 import { UpdateAccount } from '../../core/interfaces/account/update-account';
 import { switchMap } from 'rxjs';

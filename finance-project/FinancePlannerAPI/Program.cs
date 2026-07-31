@@ -22,7 +22,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ContributionService>();
 builder.Services.AddScoped<FinancialGoalService>();
 builder.Services.AddScoped<InvestmentService>();

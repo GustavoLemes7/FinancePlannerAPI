@@ -25,18 +25,12 @@ public class TransactionService
         if (account is null)
             return false;
 
-        var category = await _context.Categories
-            .FirstOrDefaultAsync(c =>
-                c.PublicId == request.CategoryPublicId);
-
-        if (category is null)
-            return false;
 
         var transaction = new Transaction
         {
             UserId = userId,
             AccountId = account.Id,
-            CategoryId = category.Id,
+            Category = request.Category,
             Type = request.Type,
             Description = request.Description,
             Amount = request.Amount,

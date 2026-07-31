@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { Account } from '../interfaces/account/account';
-import { CreateAccount } from '../interfaces/account/create-account';
-import { UpdateAccount } from '../interfaces/account/update-account';
+import { environment } from '../../../../environments/environment';
+import { Account } from '../../interfaces/account/account';
+import { CreateAccount } from '../../interfaces/account/create-account';
+import { UpdateAccount } from '../../interfaces/account/update-account';
 
 @Injectable({
     providedIn: 'root'

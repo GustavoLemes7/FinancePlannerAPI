@@ -60,36 +60,6 @@ namespace FinancePlannerAPI.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("FinancePlannerAPI.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<Guid>("PublicId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("FinancePlannerAPI.Models.Contribution", b =>
                 {
                     b.Property<int>("Id")
@@ -227,6 +197,10 @@ namespace FinancePlannerAPI.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -256,8 +230,6 @@ namespace FinancePlannerAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -358,12 +330,6 @@ namespace FinancePlannerAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FinancePlannerAPI.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FinancePlannerAPI.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -371,8 +337,6 @@ namespace FinancePlannerAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
-
-                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });

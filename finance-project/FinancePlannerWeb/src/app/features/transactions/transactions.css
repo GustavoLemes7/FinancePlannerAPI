@@ -1,0 +1,480 @@
+.page-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+    color: #222;
+
+}
+
+
+.page-header p {
+
+    margin: 6px 0 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+.btn-primary {
+
+    background: #4f46e5;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: .2s;
+
+}
+
+
+.btn-primary:hover {
+
+    background: #4338ca;
+
+}
+
+
+/* FILTROS */
+
+.filters {
+
+    display: flex;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+
+}
+
+
+.filter-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 180px;
+
+}
+
+
+.filter-group label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+
+.filter-group select {
+
+    padding: 10px 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #374151;
+
+    outline: none;
+
+}
+
+
+.filter-group select:focus {
+
+    border-color: #4f46e5;
+
+}
+
+
+/* CARD PRINCIPAL */
+
+.transactions-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .06);
+
+    overflow: hidden;
+
+}
+
+
+.transactions-header {
+
+    padding: 22px;
+
+    border-bottom: 1px solid #eef0f4;
+
+}
+
+
+.transactions-header h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #1f2937;
+
+}
+
+
+.transactions-header span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #9ca3af;
+
+    font-size: 13px;
+
+}
+
+
+/* TRANSAÇÕES */
+
+.transaction-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.transaction-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 22px;
+
+    border-bottom: 1px solid #f0f1f3;
+
+    transition: .2s;
+
+}
+
+
+.transaction-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.transaction-item:hover {
+
+    background: #fafafa;
+
+}
+
+
+/* INFORMAÇÕES */
+
+.transaction-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    flex: 1;
+
+}
+
+
+.transaction-icon {
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+}
+
+
+.transaction-icon.income {
+
+    background: #dcfce7;
+
+    color: #16a34a;
+
+}
+
+
+.transaction-icon.expense {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+.transaction-info h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #1f2937;
+
+}
+
+
+.transaction-info span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #9ca3af;
+
+    font-size: 13px;
+
+}
+
+
+/* VALOR */
+
+.transaction-value {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    min-width: 130px;
+
+}
+
+
+.transaction-value strong {
+
+    font-size: 16px;
+
+}
+
+
+.transaction-value small {
+
+    margin-top: 4px;
+
+    color: #9ca3af;
+
+}
+
+
+.transaction-value.income strong {
+
+    color: #16a34a;
+
+}
+
+
+.transaction-value.expense strong {
+
+    color: #dc2626;
+
+}
+
+
+/* AÇÕES */
+
+.transaction-actions {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.transaction-actions button {
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: .2s;
+
+}
+
+
+.edit {
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+}
+
+
+.edit:hover {
+
+    background: #dbe4ff;
+
+}
+
+
+.delete {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+}
+
+
+.delete:hover {
+
+    background: #fecaca;
+
+}
+
+
+/* ESTADO VAZIO */
+
+.empty-state {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 14px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+}
+
+
+.empty-state h3 {
+
+    margin: 0;
+
+    color: #374151;
+
+}
+
+
+.empty-state p {
+
+    margin-top: 7px;
+
+    color: #9ca3af;
+
+    font-size: 14px;
+
+}
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eef0f4;
+
+}

@@ -12,6 +12,8 @@ export class Modal {
 
   @Input() subtitle = '';
 
+  @Input() isOpen = false;
+
   @Output() closed = new EventEmitter<void>();
 
   close(): void {
