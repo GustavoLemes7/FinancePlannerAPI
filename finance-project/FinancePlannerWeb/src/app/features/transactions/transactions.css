@@ -478,3 +478,186 @@
     border-top: 1px solid #eef0f4;
 
 }
+
+/*FORMULÁRIO DO MODAL*/
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 15px;
+    color: #1f2937;
+
+    background: white;
+
+    transition: .2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: #4f46e5;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, .1);
+}
+
+.form-group textarea {
+
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* ERRO DE CAMPO */
+
+.form-group input.ng-invalid.ng-touched,
+.form-group select.ng-invalid.ng-touched,
+.form-group textarea.ng-invalid.ng-touched {
+
+    border-color: #dc2626;
+}
+
+.field-error {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #dc2626;
+
+    font-size: 13px;
+}
+
+
+/* ERRO GERAL DA API */
+
+.form-error {
+
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border-radius: 9px;
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+    font-size: 14px;
+}
+
+
+/* AÇÕES DO MODAL */
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #eef0f4;
+}
+
+
+/* BOTÃO CANCELAR */
+
+.btn-secondary {
+
+    border: none;
+
+    background: #f3f4f6;
+
+    color: #374151;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-secondary:hover {
+
+    background: #e5e7eb;
+}
+
+
+/* BOTÃO SALVAR */
+
+.modal-actions .btn-primary {
+
+    padding: 11px 20px;
+}
+
+
+/* BOTÕES DESABILITADOS */
+
+.btn-secondary:disabled,
+.btn-primary:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+}
+
+
+/* GRID PARA CAMPOS LADO A LADO */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 600px) {
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+}
