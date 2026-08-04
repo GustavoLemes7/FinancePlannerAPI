@@ -6,6 +6,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { Accounts } from './features/accounts/accounts';
 import { DashboardHome } from './features/dashboard/pages/dashboard-home/dashboard-home';
 import { Transactions } from './features/transactions/transactions';
+import { Investments } from './features/investments/investments';
 
 export const routes: Routes = [
   {
@@ -32,7 +33,11 @@ export const routes: Routes = [
     {
       path: 'transactions',
       component: Transactions
-    }
+    },
+    {
+      path: 'investments',
+      component: Investments
+    },
   ]
 }
 ];

@@ -1,0 +1,213 @@
+<div class="page-header">
+
+    <div>
+
+        <h1>Investimentos</h1>
+
+        <p>Gerencie seus investimentos</p>
+
+    </div>
+
+    <button
+        class="btn-primary"
+        type="button"
+        (click)="openModal()">
+
+        + Novo Investimento
+
+    </button>
+
+</div>
+
+
+<div class="investments-grid">
+
+    @for (investment of investments; track investment.publicId) {
+
+        <div class="investment-card">
+
+            <div class="investment-header">
+
+                <div>
+
+                    <h3>{{ investment.name }}</h3>
+
+                    <span>{{ investment.type }}</span>
+
+                </div>
+
+                <div class="investment-icon">
+                    📈
+                </div>
+
+            </div>
+
+            <div class="investment-values">
+
+                <div>
+
+                    <small>Valor Investido</small>
+
+                    <strong>
+                        {{ investment.amount | currency:'BRL' }}
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <small>Rentabilidade</small>
+
+                    <strong class="profit">
+                        {{ investment.interestRate }}%
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="actions">
+
+                <button
+                    class="edit"
+                    type="button"
+                    (click)="openEditModal(investment)">
+
+                    Editar
+
+                </button>
+
+                <button
+                    class="delete"
+                    type="button"
+                    (click)="deleteInvestment(investment.publicId)">
+
+                    Excluir
+
+                </button>
+
+            </div>
+
+        </div>
+
+    } @empty {
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📊
+            </div>
+
+            <h3>Nenhum investimento cadastrado</h3>
+
+            <p>Cadastre seu primeiro investimento.</p>
+
+        </div>
+
+    }
+
+</div>
+
+
+@if (showModal) {
+
+<app-modal
+    [title]="isEditMode ? 'Editar Investimento' : 'Novo Investimento'"
+    [subtitle]="isEditMode
+        ? 'Atualize os dados do investimento'
+        : 'Cadastre um novo investimento'">
+
+    <form
+        [formGroup]="investmentForm"
+        (ngSubmit)="submitInvestment()">
+
+        <div class="form-group">
+
+            <label>Nome</label>
+
+            <input
+                type="text"
+                formControlName="name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Tipo</label>
+
+            <select formControlName="type">
+
+                <option value="">Selecione</option>
+
+                <option value="Stocks">Ações</option>
+                <option value="FII">Fundos Imobiliários</option>
+                <option value="Tesouro">Tesouro Direto</option>
+                <option value="CDB">CDB</option>
+                <option value="Crypto">Criptomoedas</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Valor Investido</label>
+
+            <input
+                type="number"
+                formControlName="amount">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Rentabilidade (%)</label>
+
+            <input
+                type="number"
+                formControlName="interestRate">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Data da Aplicação</label>
+
+            <input
+                type="date"
+                formControlName="investmentDate">
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn-secondary"
+                type="button"
+                (click)="closeModal()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="btn-primary"
+                type="submit"
+                [disabled]="loading">
+
+                {{ isEditMode ? 'Salvar Alterações' : 'Cadastrar' }}
+
+            </button>
+
+        </div>
+
+    </form>
+
+</app-modal>
+
+}
